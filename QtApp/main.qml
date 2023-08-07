@@ -26,7 +26,7 @@ Window {
             text: "Mnemonic Technique"
             onClicked: {
                 popup.open()
-                digits.text = mnmonic.generateDigits(1)
+                digits.text = mnmonic.generateDigits()
             }
         }
         Button {
@@ -90,6 +90,16 @@ Window {
             width: parent.width
             Label {
                 Layout.fillWidth: true
+                text: "Number of digits:"
+                wrapMode: Text.WordWrap
+            }
+            SpinBox {
+                id: numberDigits
+                value: 3
+                onValueChanged: mnmonic.setNumberDigits(numberDigits.value)
+            }
+            Label {
+                Layout.fillWidth: true
                 text: "Memorize this sequence of digits using Dominic O'Brien Mnemonic Technique:"
                 wrapMode: Text.WordWrap
             }
@@ -114,7 +124,7 @@ Window {
                 visible: false
                 onClicked: {
                     result.text = mnmonic.checkDigits(digits.text) ? "Correct! Play it again!" : "Wrong! Try again!"
-                    digits.text = mnmonic.generateDigits(1)
+                    digits.text = mnmonic.generateDigits()
                     okButton.visible = true
                     checkButton.visible = false
                 }

@@ -12,7 +12,12 @@ void Mnmonic::print(QString txt)
 	qDebug() << "Message from QML: " << txt;
 }
 
-QString Mnmonic::generateDigits(int length)
+void Mnmonic::setNumberDigits(int value)
+{
+	numberDigits = value;
+}
+
+QString Mnmonic::generateDigits()
 {
 	QString digits;
 	int n;
@@ -20,10 +25,10 @@ QString Mnmonic::generateDigits(int length)
 	/* initialize random seed: */
 	srand(time(NULL));
 
-	for (size_t i = 0; i < length; i++)
+	for (size_t i = 0; i < numberDigits; i++)
 	{
-		/* generate secret number between 0 and 99: */
-		n = rand() % 99;
+		/* generate secret number between 0 and 9: */
+		n = rand() % 9;
 		digits += QString::number(n);
 	}
 
