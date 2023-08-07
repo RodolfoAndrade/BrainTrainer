@@ -35,9 +35,15 @@
     <ClCompile Include="Mnmonic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MentalMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Mnmonic.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MentalMath.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

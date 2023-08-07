@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "Mnmonic.h"
+#include "MentalMath.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
     qmlRegisterType<Mnmonic>("Mnmonic", 1, 0, "Mnmonic");
+    qmlRegisterType<MentalMath>("MentalMath", 1, 0, "MentalMath");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

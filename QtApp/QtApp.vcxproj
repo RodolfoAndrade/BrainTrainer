@@ -84,12 +84,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MentalMath.cpp" />
     <ClCompile Include="Mnmonic.cpp" />
     <QtRcc Include="qml.qrc" />
     <None Include="main.qml" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Mnmonic.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MentalMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

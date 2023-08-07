@@ -3,12 +3,17 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
 import Mnmonic 1.0
+import MentalMath 1.0
 
 Window {
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello World")
+
+    MentalMath {
+        id: math
+    }
 
     ColumnLayout {
         id: mainWindowLayout
@@ -29,7 +34,44 @@ Window {
             anchors.left: parent.left
             anchors.right: parent.right
             text: "Mental Math"
-            //onClicked: popup.open()
+            onClicked: {
+                mathPopup.open()
+                equation.text = math.generateEquation()
+            }
+        }
+    }
+
+    Popup {
+        id: mathPopup
+        width: 200
+        height: 300
+        modal: true
+        focus: true
+        anchors.centerIn: parent
+        ColumnLayout {
+            width: parent.width
+            Label {
+                Layout.fillWidth: true
+                text: "Calculate the following equation mentally:"
+                wrapMode: Text.WordWrap
+            }
+            Label {
+                id: equation
+            }
+            TextArea {
+                id: answer
+            }
+            Button {
+                text: "Check"
+                onClicked: {
+                    output.text = math.checkAnswer(answer.text) ? "Correct! Play it again!" : "Wrong! Try again!"
+                    equation.text = math.generateEquation()
+                    answer.text = ""
+                }
+            }
+            Label {
+                id: output
+            }
         }
     }
 
