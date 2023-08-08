@@ -59,9 +59,13 @@ Window {
                 id: equation
             }
             TextArea {
+                focus: true
                 id: answer
+                Keys.onEnterPressed: checkAnswer.clicked()
+                Keys.onReturnPressed: checkAnswer.clicked()
             }
             Button {
+                id: checkAnswer
                 text: "Check"
                 onClicked: {
                     output.text = math.checkAnswer(answer.text) ? "Correct! Play it again!" : "Wrong! Try again!"
@@ -104,8 +108,15 @@ Window {
                 wrapMode: Text.WordWrap
             }
             TextArea {
+                focus: true
                 id: digits
                 text: "1234"
+                Keys.onReturnPressed: {
+                    okButton.visible ? okButton.clicked() : checkButton.clicked()
+                }
+                Keys.onEnterPressed: {
+                    okButton.visible ? okButton.clicked() : checkButton.clicked()
+                }
             }
             Button {
                 id: okButton
