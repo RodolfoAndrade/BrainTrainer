@@ -42,3 +42,8 @@ bool Mnmonic::checkDigits(QString digits1)
 	print(Mnmonic::digits);
 	return QString::compare(Mnmonic::digits, digits1, Qt::CaseInsensitive) == 0;
 }
+
+QString Mnmonic::getDigits()
+{
+	return digits;
+}

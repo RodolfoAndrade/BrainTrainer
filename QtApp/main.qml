@@ -99,7 +99,7 @@ Window {
             }
             SpinBox {
                 id: numberDigits
-                value: 3
+                value: 4
                 onValueChanged: mnmonic.setNumberDigits(numberDigits.value)
             }
             Label {
@@ -126,7 +126,8 @@ Window {
                     okButton.visible = false
                     checkButton.visible = true
                     result.text = ""
-                    //mnemonicTrainer.close()
+                    correctDigits.text = ""
+                    givenDigits.text = ""
                 }
             }
             Button {
@@ -134,6 +135,8 @@ Window {
                 text: "Check"
                 visible: false
                 onClicked: {
+                    correctDigits.text = "Answer: " + mnmonic.getDigits()
+                    givenDigits.text = "Typed: " + digits.text
                     result.text = mnmonic.checkDigits(digits.text) ? "Correct! Play it again!" : "Wrong! Try again!"
                     digits.text = mnmonic.generateDigits()
                     okButton.visible = true
@@ -142,6 +145,12 @@ Window {
             }
             Label {
                 id: result
+            }
+            Label {
+                id: correctDigits
+            }
+            Label {
+                id: givenDigits
             }
         }
     }

@@ -11,7 +11,7 @@ class Mnmonic  : public QObject
 	Q_OBJECT
 
 public:
-	int numberDigits = 3;
+	int numberDigits = 4;
 	QString digits;
 
 	explicit Mnmonic(QObject *parent = 0);
@@ -20,4 +20,5 @@ public:
 	Q_INVOKABLE void setNumberDigits(int value);
 	Q_INVOKABLE QString generateDigits();
 	Q_INVOKABLE bool checkDigits(QString digits1);
+	Q_INVOKABLE QString getDigits();
 };
