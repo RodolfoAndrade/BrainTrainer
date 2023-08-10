@@ -5,6 +5,9 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <string> 
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 class Mnmonic  : public QObject
 {
@@ -21,4 +24,9 @@ public:
 	Q_INVOKABLE QString generateDigits();
 	Q_INVOKABLE bool checkDigits(QString digits1);
 	Q_INVOKABLE QString getDigits();
+private:
+	map<QString, int> in;
+
+	void saveProgress(QString digits1);
+	void readProgress();
 };
