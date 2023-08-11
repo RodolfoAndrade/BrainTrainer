@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # Storage file for the application
 QtApp/progress.txt
+QtApp/math_progress.txt
