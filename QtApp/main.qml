@@ -9,7 +9,7 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Brain trainer")
 
     MentalMath {
         id: math
@@ -19,6 +19,9 @@ Window {
         id: mainWindowLayout
         anchors.left: parent.left; anchors.right: parent.right
         spacing: 0
+        Label {
+            text: "Click on one of the games to start your training"
+        }
         Button {
             id: button1
             anchors.left: parent.left
@@ -94,17 +97,27 @@ Window {
             width: parent.width
             Label {
                 Layout.fillWidth: true
-                text: "Number of digits:"
+                text: "Memorize a sequence of digits using Dominic O'Brien's Mnemonic Technique"
+                wrapMode: Text.WordWrap
+            }
+            Label {
+                Layout.fillWidth: true
+                text: "Set the number of digits:"
                 wrapMode: Text.WordWrap
             }
             SpinBox {
                 id: numberDigits
                 value: 4
-                onValueChanged: mnmonic.setNumberDigits(numberDigits.value)
+                onValueChanged: {
+                    mnmonic.setNumberDigits(numberDigits.value)
+                    digits.text = mnmonic.generateDigits()
+                    okButton.visible = true
+                    checkButton.visible = false
+                }
             }
             Label {
                 Layout.fillWidth: true
-                text: "Memorize this sequence of digits using Dominic O'Brien Mnemonic Technique:"
+                text: "Digits to be memorized:"
                 wrapMode: Text.WordWrap
             }
             TextArea {
