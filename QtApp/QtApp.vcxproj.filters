@@ -23,27 +23,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <QtRcc Include="qml.qrc">
+    <QtRcc Include="QtApp.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <None Include="main.qml">
-      <Filter>Source Files</Filter>
-    </None>
-    <ClCompile Include="Mnmonic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MentalMath.cpp">
+    <QtMoc Include="QtApp.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClCompile Include="QtApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Mnmonic.h">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MentalMathGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MnmonicGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="QtApp.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MentalMathGame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MnmonicGame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MentalMathGame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="MentalMath.h">
+    <QtMoc Include="MnmonicGame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

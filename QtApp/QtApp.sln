@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtApp", "QtApp.vcxproj", "{93EA7F52-7804-4614-B534-B7BCC6AB0029}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtApp", "QtApp.vcxproj", "{05A16A28-8536-4E28-A32F-9703E5FE3FC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93EA7F52-7804-4614-B534-B7BCC6AB0029}.Debug|x64.ActiveCfg = Debug|x64
-		{93EA7F52-7804-4614-B534-B7BCC6AB0029}.Debug|x64.Build.0 = Debug|x64
-		{93EA7F52-7804-4614-B534-B7BCC6AB0029}.Release|x64.ActiveCfg = Release|x64
-		{93EA7F52-7804-4614-B534-B7BCC6AB0029}.Release|x64.Build.0 = Release|x64
+		{05A16A28-8536-4E28-A32F-9703E5FE3FC3}.Debug|x64.ActiveCfg = Debug|x64
+		{05A16A28-8536-4E28-A32F-9703E5FE3FC3}.Debug|x64.Build.0 = Debug|x64
+		{05A16A28-8536-4E28-A32F-9703E5FE3FC3}.Release|x64.ActiveCfg = Release|x64
+		{05A16A28-8536-4E28-A32F-9703E5FE3FC3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4F425AE0-2BB3-42B7-8ABD-83B6C1EEB312}
+		SolutionGuid = {6A6F0CBD-D431-453E-83C6-50EE15930943}
 	EndGlobalSection
 EndGlobal

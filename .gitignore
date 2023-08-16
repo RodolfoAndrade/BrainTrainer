@@ -398,5 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Storage file for the application
-QtApp/progress.txt
-QtApp/math_progress.txt
+QtApp/1_x.txt
+QtApp/mnmonic.txt

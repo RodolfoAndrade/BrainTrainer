@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{93EA7F52-7804-4614-B534-B7BCC6AB0029}</ProjectGuid>
+    <ProjectGuid>{05A16A28-8536-4E28-A32F-9703E5FE3FC3}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
@@ -32,12 +32,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>6.5.2_msvc2019_64</QtInstall>
-    <QtModules>quick;core</QtModules>
+    <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>6.5.2_msvc2019_64</QtInstall>
-    <QtModules>quick;core</QtModules>
+    <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -83,17 +83,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <QtRcc Include="QtApp.qrc" />
+    <QtMoc Include="QtApp.h" />
+    <ClCompile Include="MentalMathGame.cpp" />
+    <ClCompile Include="MnmonicGame.cpp" />
+    <ClCompile Include="QtApp.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MentalMath.cpp" />
-    <ClCompile Include="Mnmonic.cpp" />
-    <QtRcc Include="qml.qrc" />
-    <None Include="main.qml" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Mnmonic.h" />
+    <QtUic Include="MentalMathGame.ui" />
+    <QtUic Include="MnmonicGame.ui" />
+    <QtUic Include="QtApp.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="MentalMath.h" />
+    <QtMoc Include="MentalMathGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MnmonicGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
