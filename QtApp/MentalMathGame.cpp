@@ -85,13 +85,15 @@ void MentalMathGame::checkAnswer() {
 		flag = false;
 	}
 	else {
-		qDebug() << "correct answer: " << answer;
-		qDebug() << "typed answer: " << ui.answer->text().toInt();
 		flag = ui.answer->text().toInt() == answer;
 		if (flag) {
 			saveProgress();
 		}
 	}
+	ui.correctAnswer->setText("Correct answer : " + QString::number(answer));
+	qDebug() << "correct answer: " << answer;
+	ui.givenAnswer->setText("Given answer: " + ui.answer->text());
+	qDebug() << "typed answer: " << ui.answer->text().toInt();
 
 	ui.feedback->setText(flag ? "Correct! Play it again!" : "Wrong! Try again!");
 	generateEquation();

@@ -51,7 +51,8 @@ void MnmonicGame::saveProgress()
 	auto list = ui.digits->text().split("-");
 	for (size_t i = 0; i < list.size(); i++)
 	{
-		score[list[i].toInt()] += 1;
+		if (list[i].size() == 2) score[list[i].toInt()] += 1;
+		else if (list[i].size() == 1) score[list[i].toInt() + 100] += 1;
 	}
 }
 
