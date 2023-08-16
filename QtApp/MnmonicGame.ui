@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>508</width>
-    <height>341</height>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>0</y>
       <width>507</width>
-      <height>340</height>
+      <height>371</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -117,6 +117,13 @@
           <widget class="QLabel" name="givenAnswer">
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="scoreButton">
+           <property name="text">
+            <string>Show score</string>
            </property>
           </widget>
          </item>

@@ -7,6 +7,7 @@ MnmonicGame::MnmonicGame(QWidget *parent)
 	connect(ui.okButton, SIGNAL(clicked()), this, SLOT(okClicked()));
 	connect(ui.checkButton, SIGNAL(clicked()), this, SLOT(checkClicked()));
 	connect(ui.spinBox, SIGNAL(valueChanged(int)), this, SLOT(valueChanged()));
+	connect(ui.scoreButton, SIGNAL(clicked()), this, SLOT(showScore()));
 
 	generateDigits();
 	loadProgress();
@@ -17,10 +18,15 @@ MnmonicGame::~MnmonicGame()
 	qDebug() << "destructor";
 	std::ofstream progress("mnmonic.txt");
 	progress << score[0];
-	for (size_t i = 0; i < 109; i++)
+	for (size_t i = 1; i < 110; i++)
 	{
 		progress << " " << score[i];
 	}
+}
+
+int* MnmonicGame::getScore()
+{
+	return score;
 }
 
 void MnmonicGame::generateDigits()
@@ -93,6 +99,12 @@ void MnmonicGame::valueChanged()
 	generateDigits();
 }
 
+void MnmonicGame::showScore()
+{
+	Dialog* diag = new Dialog(this, this);
+	diag->show();
+}
+
 void MnmonicGame::keyPressEvent(QKeyEvent* pe)
 {
 	if (pe->key() == Qt::Key_Return || pe->key() == Qt::Key_Enter) {
@@ -108,4 +120,33 @@ void MnmonicGame::okClicked()
 	ui.digits->setText("");
 	ui.okButton->setVisible(false);
 	ui.checkButton->setVisible(true);
+}
+
+Dialog::Dialog(QWidget* parent, MnmonicGame* game):
+	QDialog(parent)
+{
+	game = game;
+	ui.setupUi(this);
+	QBoxLayout *layouts[11];
+	layouts[0] = ui.column_0;
+	layouts[1] = ui.column_1;
+	layouts[2] = ui.column_2;
+	layouts[3] = ui.column_3;
+	layouts[4] = ui.column_4;
+	layouts[5] = ui.column_5;
+	layouts[6] = ui.column_6;
+	layouts[7] = ui.column_7;
+	layouts[8] = ui.column_8;
+	layouts[9] = ui.column_9;
+	layouts[10] = ui.column_10;
+	for (size_t i = 0; i < 11; i++)
+	{
+		for (size_t j = 0; j < 10; j++)
+		{
+			QLabel* label = new QLabel();
+			if (i < 10) label->setText(QString::number(i) + QString::number(j) + ": " + QString::number(game->getScore()[i*10+j]));
+			else if (i == 10) label->setText(QString::number(j) + ": " + QString::number(game->getScore()[i*10+j]));
+			layouts[i]->addWidget(label);
+		}
+	}
 }

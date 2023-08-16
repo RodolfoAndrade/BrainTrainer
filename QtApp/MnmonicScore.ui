@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MnmonicScoreDialog</class>
+ <widget class="QDialog" name="MnmonicScoreDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>662</width>
+    <height>259</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Score</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>623</width>
+     <height>218</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="column_0"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_1"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_2"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_3"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_4"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_5"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_6"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_7"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_8"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_9"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="column_10"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

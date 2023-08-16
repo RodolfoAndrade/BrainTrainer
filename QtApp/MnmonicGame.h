@@ -9,6 +9,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <QDialog>
+#include "ui_MnmonicScore.h"
 
 class MnmonicGame : public QMainWindow
 {
@@ -17,6 +19,7 @@ class MnmonicGame : public QMainWindow
 public:
 	MnmonicGame(QWidget *parent = nullptr);
 	~MnmonicGame();
+	int* getScore();
 
 private:
 	int digitsLength = 4;
@@ -32,7 +35,17 @@ private slots:
 	void okClicked();
 	void checkClicked();
 	void valueChanged();
+	void showScore();
 
 protected:
 	void keyPressEvent(QKeyEvent* pe);
+};
+
+class Dialog : public QDialog, public Ui::MnmonicScoreDialog
+{
+public:
+	Dialog(QWidget* parent, MnmonicGame* game);
+private:
+	MnmonicGame* game;
+	Ui::MnmonicScoreDialog ui;
 };

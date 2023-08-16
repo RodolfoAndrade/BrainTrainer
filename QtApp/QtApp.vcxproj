@@ -93,6 +93,7 @@
   <ItemGroup>
     <QtUic Include="MentalMathGame.ui" />
     <QtUic Include="MnmonicGame.ui" />
+    <QtUic Include="MnmonicScore.ui" />
     <QtUic Include="QtApp.ui" />
   </ItemGroup>
   <ItemGroup>
