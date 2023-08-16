@@ -23,13 +23,14 @@ private:
 	int n1;
 	int n2;
 	void generateEquation();
-	int *score[10];
+	int** score = nullptr;
 	void saveProgress();
 	void loadProgress();
-	int *splitString(std::string s);
+	int *splitString(std::string s, int n);
 
 private slots:
 	void checkAnswer();
+	void restart();
 
 protected:
 	void keyPressEvent(QKeyEvent* pe);

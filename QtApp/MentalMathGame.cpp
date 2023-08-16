@@ -5,6 +5,7 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.checkButton, SIGNAL(clicked()), this, SLOT(checkAnswer()));
+	connect(ui.numberDigits, SIGNAL(currentTextChanged(QString)), this, SLOT(restart()));
 
 	generateEquation();
 	loadProgress();
@@ -13,29 +14,46 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 MentalMathGame::~MentalMathGame()
 {
 	qDebug() << "destructor";
-	std::ofstream progress("1_x.txt");
-	for (size_t i = 0; i < 10; i++)
+	QString text = ui.numberDigits->currentText();
+	std::ofstream progress;
+	int n = 10;
+	if (text.compare("1") == 0) {
+		progress.open("1_x.txt");
+		n = 10;
+	}
+	else if (text.compare("2") == 0) {
+		progress.open("2_x.txt");
+		n = 100;
+	}
+	for (size_t i = 0; i < n; i++)
 	{
 		progress << score[i][0];
-		for (size_t j = 1; j < 10; j++)
+		for (size_t j = 1; j < n; j++)
 		{
 			progress << " " << score[i][j];
 		}
-		if (i < 9) progress << std::endl;
+		if (i < n-1) progress << std::endl;
 		delete[] score[i];
 	}
+	delete[] score;
 }
 
 void MentalMathGame::generateEquation()
 {	
+	QString text = ui.numberDigits->currentText();
+	int n = 9;
+	if (text.compare("1") == 0) n = 9;
+	else if (text.compare("2") == 0) n = 99;
+
 	/* initialize random seed: */
 	srand(time(NULL));
 	/* generate numbers between 0 and 9: */
-	n1 = rand() % 9;
-	n2 = rand() % 9;
+	n1 = rand() % n;
+	n2 = rand() % n;
 
 	ui.equation->setText(QString::number(n1) + "x" + QString::number(n2));
 	ui.answer->setText("");
+	ui.answer->setFocus();
 }
 
 void MentalMathGame::saveProgress()
@@ -45,31 +63,65 @@ void MentalMathGame::saveProgress()
 
 void MentalMathGame::loadProgress()
 {
-	std::ifstream progress("1_x.txt");
+	QString text = ui.numberDigits->currentText();
+	std::ifstream progress;
+	int n = 10;
+	if (text.compare("1") == 0) {
+		progress.open("1_x.txt");
+		n = 10;
+	}
+	else if (text.compare("2") == 0) {
+		progress.open("2_x.txt");
+		n = 100;
+	}
+	
 	std::string line;
 	if (progress.is_open())
 	{
-		for (size_t i = 0; i < 10; i++)
+		score = new int*[n];
+		for (size_t i = 0; i < n; i++)
 		{
 			std::getline(progress, line);
 			qDebug() << line;
-			score[i] = splitString(line);
+			score[i] = splitString(line, n);
 		}
 		progress.close();
 	}
 }
 
-int *MentalMathGame::splitString(std::string s)
+int *MentalMathGame::splitString(std::string s, int n)
 {
 	std::stringstream ss(s);
-	std::string n;
-	int *scoreLine = new int[10];
-	for (size_t i = 0; i < 10; i++)
+	std::string var;
+	int *scoreLine = new int[n];
+	for (size_t i = 0; i < n; i++)
 	{
-		ss >> n;
-		scoreLine[i] = stoi(n);
+		ss >> var;
+		scoreLine[i] = stoi(var);
 	}
 	return scoreLine;
+}
+
+void MentalMathGame::restart()
+{
+	// delete previous score
+	if (score != nullptr) {
+		QString text = ui.numberDigits->currentText();
+		int n = 10;
+		if (text.compare("1") == 0) {
+			n = 100;
+		}
+		else if (text.compare("2") == 0) {
+			n = 10;
+		}
+		for (size_t i = 0; i < n; i++)
+		{
+			delete[] score[i];
+		}
+		delete[] score;
+	}
+	generateEquation();
+	loadProgress();
 }
 
 void MentalMathGame::keyPressEvent(QKeyEvent* pe)
@@ -91,10 +143,7 @@ void MentalMathGame::checkAnswer() {
 		}
 	}
 	ui.correctAnswer->setText("Correct answer : " + QString::number(answer));
-	qDebug() << "correct answer: " << answer;
 	ui.givenAnswer->setText("Given answer: " + ui.answer->text());
-	qDebug() << "typed answer: " << ui.answer->text().toInt();
-
 	ui.feedback->setText(flag ? "Correct! Play it again!" : "Wrong! Try again!");
 	generateEquation();
 }

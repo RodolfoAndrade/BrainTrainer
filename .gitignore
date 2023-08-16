@@ -399,4 +399,5 @@ FodyWeavers.xsd
 
 # Storage file for the application
 QtApp/1_x.txt
+QtApp/2_x.txt
 QtApp/mnmonic.txt
