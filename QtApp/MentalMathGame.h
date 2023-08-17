@@ -23,10 +23,10 @@ private:
 	int n1;
 	int n2;
 	void generateEquation();
-	int** score = nullptr;
+	std::vector<std::vector<int>> score;
 	void saveProgress();
 	void loadProgress();
-	int *splitString(std::string s, int n);
+	std::vector<int> splitString(std::string s, int n);
 
 private slots:
 	void checkAnswer();
