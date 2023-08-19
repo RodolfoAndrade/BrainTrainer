@@ -27,6 +27,7 @@ private:
 	void saveProgress();
 	void loadProgress();
 	std::vector<int> splitString(std::string s, int n);
+	void config();
 
 private slots:
 	void checkAnswer();

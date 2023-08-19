@@ -30,6 +30,7 @@ private:
 	void saveProgress();
 	void loadProgress();
 	void splitString(std::string s);
+	void config();
 
 private slots:
 	void okClicked();

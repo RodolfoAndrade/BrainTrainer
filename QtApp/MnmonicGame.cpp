@@ -9,6 +9,7 @@ MnmonicGame::MnmonicGame(QWidget *parent)
 	connect(ui.spinBox, SIGNAL(valueChanged(int)), this, SLOT(valueChanged()));
 	connect(ui.scoreButton, SIGNAL(clicked()), this, SLOT(showScore()));
 
+	config();
 	generateDigits();
 	loadProgress();
 }
@@ -70,6 +71,23 @@ void MnmonicGame::splitString(std::string s)
 	{
 		ss >> n;
 		score[i] = stoi(n);
+	}
+}
+
+void MnmonicGame::config()
+{
+	std::ifstream settings("settings.txt");
+	std::string line;
+	if (settings.is_open()) {
+		while (std::getline(settings, line)) {
+			std::stringstream ss(line);
+			std::string var;
+			ss >> var;
+			if (var.compare("MnmonicGame") == 0) {
+				ss >> var;
+				ui.spinBox->setValue(stoi(var));
+			}
+		}
 	}
 }
 

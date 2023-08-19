@@ -7,6 +7,7 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 	connect(ui.checkButton, SIGNAL(clicked()), this, SLOT(checkAnswer()));
 	connect(ui.numberDigits, SIGNAL(currentTextChanged(QString)), this, SLOT(restart()));
 
+	config();
 	generateEquation();
 	loadProgress();
 }
@@ -123,6 +124,24 @@ std::vector<int> MentalMathGame::splitString(std::string s, int n)
 		scoreLine[i] = stoi(var);
 	}
 	return scoreLine;
+}
+
+void MentalMathGame::config()
+{
+	std::ifstream settings("settings.txt");
+	std::string line;
+	if (settings.is_open()) {
+		while (std::getline(settings, line)) {
+			std::stringstream ss(line);
+			std::string var;
+			ss >> var;
+			if (var.compare("MentalMathGame") == 0) {
+				ss >> var;
+				int index = ui.numberDigits->findText(QString::fromStdString(var));
+				if (index != -1) ui.numberDigits->setCurrentIndex(index);
+			}
+		}
+	}
 }
 
 void MentalMathGame::restart()
