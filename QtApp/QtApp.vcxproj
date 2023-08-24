@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SudokuGame.cpp" />
     <QtRcc Include="QtApp.qrc" />
     <QtMoc Include="QtApp.h" />
     <ClCompile Include="MentalMathGame.cpp" />
@@ -95,12 +96,16 @@
     <QtUic Include="MnmonicGame.ui" />
     <QtUic Include="MnmonicScore.ui" />
     <QtUic Include="QtApp.ui" />
+    <QtUic Include="SudokuGame.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MentalMathGame.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MnmonicGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="SudokuGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

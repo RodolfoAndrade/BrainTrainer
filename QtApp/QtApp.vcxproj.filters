@@ -43,6 +43,9 @@
     <ClCompile Include="MnmonicGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SudokuGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QtApp.ui">
@@ -57,12 +60,18 @@
     <QtUic Include="MnmonicScore.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="SudokuGame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MentalMathGame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="MnmonicGame.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SudokuGame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

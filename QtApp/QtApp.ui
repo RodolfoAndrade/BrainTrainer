@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>347</width>
-    <height>174</height>
+    <height>211</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,7 +32,7 @@
       <x>0</x>
       <y>0</y>
       <width>347</width>
-      <height>174</height>
+      <height>211</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -84,6 +84,13 @@
           <widget class="QPushButton" name="mnmonicButton">
            <property name="text">
             <string>Mnmonic Game</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="sudokuButton">
+           <property name="text">
+            <string>Sudoku</string>
            </property>
           </widget>
          </item>

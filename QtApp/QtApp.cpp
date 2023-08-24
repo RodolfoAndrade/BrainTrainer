@@ -6,6 +6,7 @@ QtApp::QtApp(QWidget *parent)
     ui.setupUi(this);
     connect(ui.mentalMathButton, SIGNAL(clicked()), this, SLOT(openMentalMathGame()));
     connect(ui.mnmonicButton, SIGNAL(clicked()), this, SLOT(openMnmonicGame()));
+    connect(ui.sudokuButton, SIGNAL(clicked()), this, SLOT(openSudokuGame()));
 }
 
 QtApp::~QtApp()
@@ -26,4 +27,11 @@ void QtApp::openMnmonicGame()
     qDebug() << "openMnmonicGame";
     mnmonicGame = new MnmonicGame(this);
     mnmonicGame->show();
+}
+
+void QtApp::openSudokuGame()
+{
+    qDebug() << "openSudokuGame";
+    sudokuGame = new SudokuGame(this);
+    sudokuGame->show();
 }
