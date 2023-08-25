@@ -90,7 +90,7 @@
          <item>
           <widget class="QPushButton" name="sudokuButton">
            <property name="text">
-            <string>Sudoku</string>
+            <string>Sudoku Game</string>
            </property>
           </widget>
          </item>

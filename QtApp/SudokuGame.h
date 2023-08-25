@@ -6,6 +6,7 @@
 #include <fstream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <QKeyEvent>
 
 class SudokuGame : public QMainWindow
 {
@@ -17,6 +18,18 @@ public:
 
 private:
 	Ui::SudokuGameClass ui;
-	void openGames();
 	std::string game, solution;
+	QPushButton* toggled = nullptr;
+	QList<QPushButton*> redButtons;
+	bool check(QPushButton** toggled);
+	QPalette normal;
+	QPalette blue;
+	QPalette red;
+
+private slots:
+	void newGame();
+	void clickedCell();
+
+protected:
+	void keyPressEvent(QKeyEvent* pe);
 };
