@@ -10,6 +10,13 @@ SudokuGame::SudokuGame(QWidget *parent)
 		QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
 		connect(button, SIGNAL(clicked()), this, SLOT(clickedCell()));
 	}
+	for (int i = 1; i <= 9; i++) {
+		QString name = QStringLiteral("selectButton_%1").arg(i);
+		QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
+		connect(button, SIGNAL(clicked()), this, SLOT(clickedSelect()));
+	}
+	ui.annotateButton->setCheckable(true);
+	connect(ui.annotateButton, SIGNAL(clicked()), this, SLOT(clickedAnnotate()));
 	normal = ui.button_1->palette();
 	red = ui.button_1->palette();
 	blue = ui.button_1->palette();
@@ -87,7 +94,7 @@ bool SudokuGame::check(QPushButton** toggled)
 void SudokuGame::clickedCell()
 {
 	QPushButton* button = qobject_cast<QPushButton*>(sender());
-	if (button->isCheckable()&& toggled != button) {
+	if (ui.annotateButton->isChecked()==false&&button->isCheckable()&& toggled != button) {
 		if (toggled != nullptr) {
 			toggled->setChecked(false);
 			if (toggled->palette() == red) {
@@ -103,11 +110,59 @@ void SudokuGame::clickedCell()
 		}
 		toggled = button;
 	}
+	if (ui.annotateButton->isChecked() && selected != nullptr) {
+		toggled = button;
+		toggled->setText(selected->text());
+		check(&toggled);
+	}
+}
+
+void SudokuGame::clickedSelect()
+{
+	QPushButton* button = qobject_cast<QPushButton*>(sender());
+	if (ui.annotateButton->isChecked() && selected != button) {
+		if (selected != nullptr) {
+			selected->setChecked(false);
+		}
+		selected = button;
+	}
+}
+
+void SudokuGame::clickedAnnotate()
+{
+	if (ui.annotateButton->isChecked()==false) {
+		if (selected) selected->setChecked(false);
+		for (int i = 1; i <= 9; i++) {
+			QString name = QStringLiteral("selectButton_%1").arg(i);
+			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
+			button->setCheckable(false);
+		}
+		for (int i = 1; i <= 9 * 9; i++) {
+			QString name = QStringLiteral("button_%1").arg(i);
+			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
+			if (button->text() != "") button->setCheckable(true);
+		}
+	}
+	else {
+		if (toggled) toggled->setChecked(false);
+		for (int i = 1; i <= 9; i++) {
+			QString name = QStringLiteral("selectButton_%1").arg(i);
+			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
+			button->setCheckable(true);
+		}
+		for (int i = 1; i <= 9 * 9; i++) {
+			QString name = QStringLiteral("button_%1").arg(i);
+			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
+			if(button->text()=="") button->setCheckable(false);
+		}
+		selected = ui.selectButton_1;
+		selected->setChecked(true);
+	}
 }
 
 void SudokuGame::keyPressEvent(QKeyEvent* pe)
 {
-	if (toggled != nullptr) {
+	if (toggled != nullptr&&ui.annotateButton->isChecked()==false) {
 		if (pe->key() == Qt::Key_1) {
 			toggled->setText("1");
 		}
@@ -136,6 +191,37 @@ void SudokuGame::keyPressEvent(QKeyEvent* pe)
 			toggled->setText("9");
 		}
 		check(&toggled);
+	}
+	if (ui.annotateButton->isChecked()) {
+		if (selected)selected->setChecked(false);
+		if (pe->key() == Qt::Key_1) {
+			selected = ui.selectButton_1;
+		}
+		else if (pe->key() == Qt::Key_2) {
+			selected = ui.selectButton_2;
+		}
+		else if (pe->key() == Qt::Key_3) {
+			selected = ui.selectButton_3;
+		}
+		else if (pe->key() == Qt::Key_4) {
+			selected = ui.selectButton_4;
+		}
+		else if (pe->key() == Qt::Key_5) {
+			selected = ui.selectButton_5;
+		}
+		else if (pe->key() == Qt::Key_6) {
+			selected = ui.selectButton_6;
+		}
+		else if (pe->key() == Qt::Key_7) {
+			selected = ui.selectButton_7;
+		}
+		else if (pe->key() == Qt::Key_8) {
+			selected = ui.selectButton_8;
+		}
+		else if (pe->key() == Qt::Key_9) {
+			selected = ui.selectButton_9;
+		}
+		selected->setChecked(true);
 	}
 }
 

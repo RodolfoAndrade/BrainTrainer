@@ -20,6 +20,7 @@ private:
 	Ui::SudokuGameClass ui;
 	std::string game, solution;
 	QPushButton* toggled = nullptr;
+	QPushButton* selected = nullptr;
 	QList<QPushButton*> redButtons;
 	bool check(QPushButton** toggled);
 	QPalette normal;
@@ -29,6 +30,8 @@ private:
 private slots:
 	void newGame();
 	void clickedCell();
+	void clickedSelect();
+	void clickedAnnotate();
 
 protected:
 	void keyPressEvent(QKeyEvent* pe);
