@@ -14,6 +14,7 @@ SudokuGame::SudokuGame(QWidget *parent)
 		QString name = QStringLiteral("selectButton_%1").arg(i);
 		QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
 		connect(button, SIGNAL(clicked()), this, SLOT(clickedSelect()));
+		button->setEnabled(false);
 	}
 	ui.annotateButton->setCheckable(true);
 	connect(ui.annotateButton, SIGNAL(clicked()), this, SLOT(clickedAnnotate()));
@@ -119,6 +120,16 @@ void SudokuGame::clickedCell()
 
 void SudokuGame::clickedSelect()
 {
+	if (toggled != nullptr && toggled->palette() == red) {
+		toggled->setPalette(normal);
+		toggled->setText("");
+
+		while (!redButtons.isEmpty()) {
+			QPushButton* button = redButtons.back();
+			button->setPalette(normal);
+			redButtons.pop_back();
+		}
+	}
 	QPushButton* button = qobject_cast<QPushButton*>(sender());
 	if (ui.annotateButton->isChecked() && selected != button) {
 		if (selected != nullptr) {
@@ -130,12 +141,23 @@ void SudokuGame::clickedSelect()
 
 void SudokuGame::clickedAnnotate()
 {
+	if (toggled!=nullptr&&toggled->palette() == red) {
+		toggled->setPalette(normal);
+		toggled->setText("");
+
+		while (!redButtons.isEmpty()) {
+			QPushButton* button = redButtons.back();
+			button->setPalette(normal);
+			redButtons.pop_back();
+		}
+	}
 	if (ui.annotateButton->isChecked()==false) {
 		if (selected) selected->setChecked(false);
 		for (int i = 1; i <= 9; i++) {
 			QString name = QStringLiteral("selectButton_%1").arg(i);
 			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
 			button->setCheckable(false);
+			button->setEnabled(false);
 		}
 		for (int i = 1; i <= 9 * 9; i++) {
 			QString name = QStringLiteral("button_%1").arg(i);
@@ -149,6 +171,7 @@ void SudokuGame::clickedAnnotate()
 			QString name = QStringLiteral("selectButton_%1").arg(i);
 			QPushButton* button = ui.centralWidget->findChild<QPushButton*>(name);
 			button->setCheckable(true);
+			button->setEnabled(true);
 		}
 		for (int i = 1; i <= 9 * 9; i++) {
 			QString name = QStringLiteral("button_%1").arg(i);
