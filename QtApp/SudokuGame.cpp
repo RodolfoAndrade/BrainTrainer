@@ -112,6 +112,18 @@ void SudokuGame::clickedCell()
 		toggled = button;
 	}
 	if (ui.annotateButton->isChecked() && selected != nullptr) {
+		if (toggled != nullptr) {
+			if (toggled->palette() == red) {
+				toggled->setPalette(normal);
+				toggled->setText("");
+
+				while (!redButtons.isEmpty()) {
+					QPushButton* button = redButtons.back();
+					button->setPalette(normal);
+					redButtons.pop_back();
+				}
+			}
+		}
 		toggled = button;
 		toggled->setText(selected->text());
 		check(&toggled);
