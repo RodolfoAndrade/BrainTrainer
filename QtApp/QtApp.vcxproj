@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MentalMath.cpp" />
     <ClCompile Include="SudokuGame.cpp" />
     <QtRcc Include="QtApp.qrc" />
     <QtMoc Include="QtApp.h" />
@@ -106,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SudokuGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MentalMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

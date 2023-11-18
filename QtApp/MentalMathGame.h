@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "MentalMath.h"
 
 class MentalMathGame : public QMainWindow
 {
@@ -20,18 +21,11 @@ public:
 
 private:
 	Ui::MentalMathGameClass ui;
-	int n1;
-	int n2;
-	void generateEquation();
-	std::vector<std::vector<int>> score;
-	void saveProgress();
-	void loadProgress();
-	std::vector<int> splitString(std::string s, int n);
-	void config();
+	MentalMath math;
 
 private slots:
 	void checkAnswer();
-	void restart();
+	void start();
 
 protected:
 	void keyPressEvent(QKeyEvent* pe);
