@@ -3,12 +3,7 @@
 #include <QMainWindow>
 #include "ui_MentalMathGame.h"
 #include <QDebug>
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
 #include <QKeyEvent>
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include "MentalMath.h"
 
 class MentalMathGame : public QMainWindow

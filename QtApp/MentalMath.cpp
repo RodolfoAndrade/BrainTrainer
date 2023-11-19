@@ -1,37 +1,14 @@
 #include "MentalMath.h"
 
-std::vector<int> splitString(std::string s, int n)
-{
-	std::stringstream ss(s);
-	std::string var;
-	std::vector<int> scoreLine(n, 0);
-	for (size_t i = 0; i < n; i++)
-	{
-		ss >> var;
-		scoreLine[i] = stoi(var);
-	}
-	return scoreLine;
-}
-
-MentalMath::MentalMath():
-	control{ Controller() }
+MentalMath::MentalMath()
 {
 	qDebug() << "MentalMath constructor";
 
-	// looking for MentalMath configuration saved in settings.json file
-	numberDigits = control.getMentalMathSettings();
+	// looking for mentalmath configuration saved in settings.json file
+	control = Controller::getInstance();
+	numberDigits = control->getMentalMathSettings();
 
 	generateEquation();
-}
-
-std::string MentalMath::getNumberDigits()
-{
-	return numberDigits;
-}
-
-void MentalMath::setNumberDigits(std::string numberDigits)
-{
-	this->numberDigits = numberDigits;
 }
 
 void MentalMath::generateEquation()
@@ -55,6 +32,16 @@ void MentalMath::generateEquation()
 			n2 = rand() % 99;
 		}
 	}
+}
+
+std::string MentalMath::getNumberDigits()
+{
+	return numberDigits;
+}
+
+void MentalMath::setNumberDigits(std::string numberDigits)
+{
+	this->numberDigits = numberDigits;
 }
 
 int MentalMath::getN1()

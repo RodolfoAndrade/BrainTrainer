@@ -7,9 +7,11 @@
 class Controller
 {
 private:
-	nlohmann::json j;
+	Controller(nlohmann::json j);
+	static Controller* control;
+	static nlohmann::json j;
 public:
-	Controller();
-	std::string getMentalMathSettings();
+	static Controller* getInstance();
+	static std::string getMentalMathSettings();
+	static std::string getMnmonicSettings();
 };
-

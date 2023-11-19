@@ -13,6 +13,7 @@ QtApp::~QtApp()
 {
     if (mentalMathGame != nullptr) delete mentalMathGame;
     if (mnmonicGame != nullptr) delete mnmonicGame;
+    if (sudokuGame != nullptr) delete sudokuGame;
 }
 
 void QtApp::openMentalMathGame()
