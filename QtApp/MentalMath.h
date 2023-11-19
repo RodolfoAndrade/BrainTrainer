@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "Controller.h"
 
 class MentalMath
 {
@@ -11,6 +12,7 @@ private:
 	int n1;
 	int n2;
 	std::vector<std::vector<int>> score;
+	Controller control;
 public:
 	MentalMath();
 	std::string getNumberDigits();

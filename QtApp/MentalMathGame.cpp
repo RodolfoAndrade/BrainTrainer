@@ -1,13 +1,13 @@
 #include "MentalMathGame.h"
 
 MentalMathGame::MentalMathGame(QWidget *parent)
-	: QMainWindow(parent)
+	: QMainWindow(parent), math{ MentalMath() }
 {
+	qDebug() << "MentalMathGame constructor";
+
 	ui.setupUi(this);
 	connect(ui.checkButton, SIGNAL(clicked()), this, SLOT(checkAnswer()));
 	connect(ui.numberDigits, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
-
-	math = MentalMath();
 
 	// get index of dropdown type of mentalmath - the number of digits
 	int index = ui.numberDigits->findText(QString::fromStdString(math.getNumberDigits()));

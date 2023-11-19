@@ -87,21 +87,13 @@ void MentalMath::clearScore()
 	score.clear();
 }
 
-MentalMath::MentalMath()
+MentalMath::MentalMath():
+	control{ Controller() }
 {
-	// looking for MentalMath configuration saved in settings.txt file
-	std::ifstream settings("settings.txt");
-	std::string line;
-	if (settings.is_open()) {
-		while (std::getline(settings, line)) {
-			std::stringstream ss(line);
-			std::string var;
-			ss >> var;
-			if (var.compare("MentalMathGame") == 0) {
-				ss >> numberDigits;
-			}
-		}
-	}
+	qDebug() << "MentalMath constructor";
+
+	// looking for MentalMath configuration saved in settings.json file
+	numberDigits = control.getMentalMathSettings();
 
 	generateEquation();
 }
