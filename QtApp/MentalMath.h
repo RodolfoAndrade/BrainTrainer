@@ -11,7 +11,6 @@ private:
 	std::string numberDigits;
 	int n1;
 	int n2;
-	std::vector<std::vector<int>> score;
 	Controller control;
 public:
 	MentalMath();
@@ -21,9 +20,5 @@ public:
 	int getN1();
 	int getN2();
 	int getAnswer();
-	void loadProgress();
-	void incrementScore();
-	void saveProgress();
-	void clearScore();
 };
 

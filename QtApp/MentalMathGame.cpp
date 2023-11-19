@@ -19,19 +19,15 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 MentalMathGame::~MentalMathGame()
 {
 	qDebug() << "destructor";
-	math.saveProgress();
 }
 
 void MentalMathGame::start()
 {
-	// delete previous score
-	math.clearScore();
 	math.setNumberDigits(ui.numberDigits->currentText().toStdString());
 	math.generateEquation();
 	ui.equation->setText(QString::number(math.getN1()) + "x" + QString::number(math.getN2()));
 	ui.answer->setText("");
 	ui.answer->setFocus();
-	math.loadProgress();
 }
 
 void MentalMathGame::keyPressEvent(QKeyEvent* pe)
@@ -48,9 +44,6 @@ void MentalMathGame::checkAnswer() {
 	}
 	else {
 		flag = ui.answer->text().toInt() == answer;
-		if (flag) {
-			math.incrementScore();
-		}
 	}
 	ui.correctAnswer->setText("Correct answer : " + QString::number(answer));
 	ui.givenAnswer->setText("Given answer: " + ui.answer->text());

@@ -397,10 +397,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# nlohmann library for reading json files
+include/nlohmann/*
+
 # Storage file for the application
-QtApp/1_x.txt
-QtApp/2_x.txt
-QtApp/1.2_x.txt
 QtApp/mnmonic.txt
-QtApp/settings.txt
 QtApp/sudoku.csv
