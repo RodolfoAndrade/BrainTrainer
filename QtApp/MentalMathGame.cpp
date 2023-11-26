@@ -8,11 +8,16 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 	// setting up ui and buttons
 	ui.setupUi(this);
 	connect(ui.checkButton, SIGNAL(clicked()), this, SLOT(checkAnswer()));
-	connect(ui.numberDigits, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
 
 	// get index of dropdown type of mentalmath, which shows the number of digits
-	int index = ui.numberDigits->findText(QString::fromStdString(math.getNumberDigits()));
-	if (index != -1) ui.numberDigits->setCurrentIndex(index);
+	int index = ui.n1->findText(QString::fromStdString(math.getDigitsN1()));
+	if (index != -1) ui.n1->setCurrentIndex(index);
+	index = ui.n2->findText(QString::fromStdString(math.getDigitsN2()));
+	if (index != -1) ui.n2->setCurrentIndex(index);
+
+	// disconnecting combbox to set up value without emitting signal
+	connect(ui.n1, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
+	connect(ui.n2, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
 
 	start();
 }
@@ -25,7 +30,7 @@ MentalMathGame::~MentalMathGame()
 void MentalMathGame::start()
 {
 	// set number of digits
-	math.setNumberDigits(ui.numberDigits->currentText().toStdString());
+	math.setNumberDigits(ui.n1->currentText().toStdString(), ui.n2->currentText().toStdString());
 	// create equation
 	math.generateEquation();
 	// update ui to display equation

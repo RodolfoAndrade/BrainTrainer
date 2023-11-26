@@ -1,8 +1,10 @@
 # MindTrainer
 C++ application using Qt framework for playing memory and math games.
-Application developed using The Model View Controller (MVC) architectural design pattern.
+Application developed using The Model View Controller (MVC) architectural design pattern with the Controller being a Singleton class.
 
 The main interface allows the user to choose one of the three games implemented.
+
+<img src="./images/menu.png"/>
 
 ## MentalMath
 This games challenges the user in using mental math abilities to solve random generated equations.

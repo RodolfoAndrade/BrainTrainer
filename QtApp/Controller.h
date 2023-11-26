@@ -12,6 +12,6 @@ private:
 	static nlohmann::json j;
 public:
 	static Controller* getInstance();
-	static std::string getMentalMathSettings();
+	static std::string getMentalMathSettings(std::string n);
 	static std::string getMnmonicSettings();
 };

@@ -6,42 +6,38 @@ MentalMath::MentalMath()
 
 	// looking for mentalmath configuration saved in settings.json file
 	control = Controller::getInstance();
-	numberDigits = control->getMentalMathSettings();
+	digitsN1 = control->getMentalMathSettings("n1");
+	digitsN2 = control->getMentalMathSettings("n2");
 
 	generateEquation();
 }
 
 void MentalMath::generateEquation()
 {
-	int n = 9;
+	/* initialize random seed: */
+	srand(time(NULL));
 
-	//if full digits
-	if (numberDigits.compare("1") == 0 || numberDigits.compare("2") == 0) {
-		if (numberDigits.compare("1") == 0) n = 9;
-		else if (numberDigits.compare("2") == 0) n = 99;
-
-		/* initialize random seed: */
-		srand(time(NULL));
+	if (digitsN1.compare("1") == 0) {
 		/* generate numbers between 0 and 9: */
-		n1 = rand() % n;
-		n2 = rand() % n;
+		n1 = rand() % 9;
 	}
-	else {
-		if (numberDigits.compare("1.2") == 0) {
-			n1 = rand() % 9;
-			n2 = rand() % 99;
-		}
+	else if (digitsN1.compare("2") == 0) {
+		n1 = rand() % 99;
+	}
+
+	// generate digits for n2
+	if (digitsN2.compare("1") == 0) {
+		n2 = rand() % 9;
+	}
+	else if (digitsN2.compare("2") == 0) {
+		n2 = rand() % 99;
 	}
 }
 
-std::string MentalMath::getNumberDigits()
+void MentalMath::setNumberDigits(std::string n1, std::string n2)
 {
-	return numberDigits;
-}
-
-void MentalMath::setNumberDigits(std::string numberDigits)
-{
-	this->numberDigits = numberDigits;
+	this->digitsN1 = n1;
+	this->digitsN2 = n2;
 }
 
 int MentalMath::getN1()
@@ -52,6 +48,16 @@ int MentalMath::getN1()
 int MentalMath::getN2()
 {
 	return n2;
+}
+
+std::string MentalMath::getDigitsN1()
+{
+	return digitsN1;
+}
+
+std::string MentalMath::getDigitsN2()
+{
+	return digitsN2;
 }
 
 int MentalMath::getAnswer()

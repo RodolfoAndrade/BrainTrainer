@@ -18,9 +18,14 @@ Controller* Controller::getInstance()
     return control;
 }
 
-std::string Controller::getMentalMathSettings()
+std::string Controller::getMentalMathSettings(std::string n)
 {
-    return j["MentalMath"];
+    if (n.compare("n1") == 0) {
+        return j["MentalMath"]["n1"];
+    }
+    else if (n.compare("n2") == 0) {
+        return j["MentalMath"]["n2"];
+    }
 }
 
 std::string Controller::getMnmonicSettings()

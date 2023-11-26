@@ -1,5 +1,5 @@
 {
-	"MentalMath": "1.2",
+	"MentalMath": {"n1": "1", "n2": "2"},
 	"Mnmonic": "6",
 	"Sudoku": "easy"
 }
