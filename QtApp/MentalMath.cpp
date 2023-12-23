@@ -2,14 +2,16 @@
 
 MentalMath::MentalMath()
 {
-	qDebug() << "MentalMath constructor";
-
 	// looking for mentalmath configuration saved in settings.json file
-	control = Controller::getInstance();
+	control = Controller::getInstance("settings.json");
 	digitsN1 = control->getMentalMathSettings("n1");
 	digitsN2 = control->getMentalMathSettings("n2");
 
 	generateEquation();
+}
+
+MentalMath::~MentalMath() {
+
 }
 
 void MentalMath::generateEquation()

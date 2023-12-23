@@ -7,11 +7,11 @@ Controller::Controller(nlohmann::json i) {
     j = i;
 }
 
-Controller* Controller::getInstance()
+Controller* Controller::getInstance(std::string filename)
 {
     if (control == nullptr) {
         nlohmann::json i;
-        std::ifstream file("./settings.json");
+        std::ifstream file(filename);
         file >> i;
         control = new Controller(i);
     }

@@ -3,7 +3,7 @@
 Mnmonic::Mnmonic()
 {
 	// looking for mentalmath configuration saved in settings.json file
-	control = Controller::getInstance();
+	control = Controller::getInstance("settings.json");
 	digitsLength = std::stoi(control->getMnmonicSettings());
 }
 

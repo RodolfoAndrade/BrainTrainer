@@ -11,6 +11,7 @@ private:
 	Controller* control;
 public:
 	MentalMath();
+	~MentalMath();
 	void setNumberDigits(std::string n1, std::string n2);
 	void generateEquation();
 	int getN1();

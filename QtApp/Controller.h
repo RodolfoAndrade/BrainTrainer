@@ -1,5 +1,4 @@
 #pragma once
-#include <QDebug>
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
@@ -11,7 +10,7 @@ private:
 	static Controller* control;
 	static nlohmann::json j;
 public:
-	static Controller* getInstance();
+	static Controller* getInstance(std::string filename);
 	static std::string getMentalMathSettings(std::string n);
 	static std::string getMnmonicSettings();
 };
