@@ -11,7 +11,7 @@ The main interface allows the user to choose one of the three games implemented.
 
 ## Features:
 1. Mental Math
-This games challenges the user in using mental math abilities to solve random generated equations.
+Engage in a challenging mental math game that tests your multiplication skills.
 <img src="./images/math.png"/>
 
 2. Mnemonic
