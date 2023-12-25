@@ -37,6 +37,28 @@ void MentalMathGame::start()
 	ui.equation->setText(QString::number(math.getN1()) + "x" + QString::number(math.getN2()));
 	ui.answer->setText("");
 	ui.answer->setFocus();
+	// set up worker
+	QThread* thread = new QThread();
+	Worker* worker = new Worker();
+	worker->moveToThread(thread);
+	connect(worker, &Worker::error, this, &MentalMathGame::errorString);
+	connect(worker, &Worker::setBar, this, &MentalMathGame::setBar);
+	connect(thread, &QThread::started, worker, &Worker::process);
+	connect(worker, &Worker::finished, thread, &QThread::quit);
+	connect(worker, &Worker::finished, worker, &Worker::deleteLater);
+	connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+	thread->start();
+}
+
+void MentalMathGame::errorString(QString err)
+{
+	qDebug() << "errorString:" << err;
+}
+
+void MentalMathGame::setBar(int x)
+{
+	auto bar = ui.progressBar;
+	bar->setValue(x);
 }
 
 void MentalMathGame::keyPressEvent(QKeyEvent* pe)
@@ -63,4 +85,29 @@ void MentalMathGame::checkAnswer() {
 	ui.feedback->setText(flag ? "Correct! Play it again!" : "Wrong! Try again!");
 	// restart
 	start();
+}
+
+Worker::Worker()
+{
+}
+
+Worker::~Worker()
+{
+}
+
+void Worker::process() { // Process. Start processing data.
+	// allocate resources using new here
+	qDebug("starting worker process");
+	clock_t start = clock();
+	clock_t shortStart = start;
+	int value = 0;
+	do {
+		if ((float)(clock() - shortStart) / CLOCKS_PER_SEC > 8.0/100.0) {
+			shortStart = clock();
+			value += 1;
+			emit setBar(value);
+		}
+	} while ((float)(clock() - start) / CLOCKS_PER_SEC < 8.0);
+	emit setBar(100);
+	emit finished();
 }
