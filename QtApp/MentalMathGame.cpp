@@ -29,6 +29,12 @@ MentalMathGame::~MentalMathGame()
 
 void MentalMathGame::start()
 {
+	if (thread != nullptr) {
+		if (thread->isRunning()) {
+			thread->requestInterruption();
+		}
+		thread->quit();
+	}
 	// set number of digits
 	math.setNumberDigits(ui.n1->currentText().toStdString(), ui.n2->currentText().toStdString());
 	// create equation
@@ -38,7 +44,7 @@ void MentalMathGame::start()
 	ui.answer->setText("");
 	ui.answer->setFocus();
 	// set up worker
-	QThread* thread = new QThread();
+	thread = new QThread();
 	Worker* worker = new Worker();
 	worker->moveToThread(thread);
 	connect(worker, &Worker::error, this, &MentalMathGame::errorString);
@@ -107,7 +113,7 @@ void Worker::process() { // Process. Start processing data.
 			value += 1;
 			emit setBar(value);
 		}
-	} while ((float)(clock() - start) / CLOCKS_PER_SEC < 8.0);
+	} while ((float)(clock() - start) / CLOCKS_PER_SEC < 8.0 && !QThread::currentThread()->isInterruptionRequested());
 	emit setBar(100);
 	emit finished();
 }

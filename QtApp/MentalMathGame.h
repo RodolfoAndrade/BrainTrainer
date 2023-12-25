@@ -18,6 +18,7 @@ public:
 private:
 	Ui::MentalMathGameClass ui;
 	MentalMath math;
+	QThread* thread = nullptr;
 
 private slots:
 	void checkAnswer();
