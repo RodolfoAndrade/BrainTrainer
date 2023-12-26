@@ -18,7 +18,8 @@ public:
 private:
 	Ui::MentalMathGameClass ui;
 	MentalMath math;
-	QThread* thread = nullptr;
+	QPointer<QThread> thread;
+	int timeout;
 
 private slots:
 	void checkAnswer();
@@ -33,7 +34,7 @@ protected:
 class Worker : public QObject {
 	Q_OBJECT
 public:
-	Worker();
+	Worker(int timeout);
 	~Worker();
 public slots:
 	void process();
@@ -43,4 +44,5 @@ signals:
 	void setBar(int x);
 private:
 	// add your variables here
+	int timeout;
 };
