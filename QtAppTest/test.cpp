@@ -1,7 +1,7 @@
 #include "pch.h"
 
 TEST(MentalMath, controller) {
-	Controller* control = Controller::getInstance("C:/Users/rodol/Documents/Python projects/MindTrainer/QtApp/settings.json");
+	Controller* control = Controller::getInstance("C:/Users/rodol/Documents/Python projects/BrainTrainer/QtApp/settings.json");
 	EXPECT_TRUE(control != nullptr);
 
 	std::string digitsN1 = control->getMentalMathSettings("n1");
@@ -33,4 +33,14 @@ TEST(MentalMath, getAnswer) {
 	mm.setNumberDigits("8888", "8888");
 
 	EXPECT_EQ(mm.getN1() * mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, thread) {
+	int argc = 1;
+	char* args[] = { (char*)"QtApp" };
+	QApplication a(argc, args);
+
+	MentalMathGame mmg = MentalMathGame();
+
+	EXPECT_FALSE(mmg.thread.isNull());
 }

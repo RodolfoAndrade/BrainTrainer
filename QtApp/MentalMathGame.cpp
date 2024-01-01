@@ -29,7 +29,7 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 
 MentalMathGame::~MentalMathGame()
 {
-	qDebug() << "destructor";
+	qDebug() << "MentalMathGame destructor";
 }
 
 void MentalMathGame::start()
