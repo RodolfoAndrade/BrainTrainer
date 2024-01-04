@@ -16,9 +16,11 @@ Engage in a challenging mental math game that tests your multiplication skills.
 
 2. Mnemonic
 The Mnomnic game askes the user to memorize a sequence of 1-2 digits and type the remembered sequence in the field.
+<img src="./images/mnmonic.png"/>
 
 3. Sudoku
 Sudoku is a popular game for filling a 9x9 matriz following some rules.
+<img src="./images/sudoku.png"/>
 
 
 ## Key Components:
