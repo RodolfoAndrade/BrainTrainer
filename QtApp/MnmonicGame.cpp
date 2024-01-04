@@ -24,6 +24,7 @@ void MnmonicGame::start()
 	mnm.generateDigits(ui.spinBox->value());
 	ui.digits->setFocus();
 	ui.digits->setText(QString::fromStdString(mnm.getDigits()));
+	ui.label_3->setText("Digits to be memorized:");
 	ui.okButton->setVisible(true);
 	ui.checkButton->setVisible(false);
 }
@@ -54,6 +55,7 @@ void MnmonicGame::okClicked()
 {
 	ui.digits->setFocus();
 	ui.digits->setText("");
+	ui.label_3->setText("Digits memorized:");
 	ui.okButton->setVisible(false);
 	ui.checkButton->setVisible(true);
 }
