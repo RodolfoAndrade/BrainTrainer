@@ -28,11 +28,57 @@ TEST(MentalMath, setNumberDigits) {
 	EXPECT_EQ("8888", mm.getDigitsN2());
 }
 
-TEST(MentalMath, getAnswer) {
+TEST(MentalMath, getAnswerDefault) {
 	MentalMath mm = MentalMath();
+	
 	mm.setNumberDigits("8888", "8888");
 
 	EXPECT_EQ(mm.getN1() * mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, getAnswerAdd) {
+	MentalMath mm = MentalMath();
+
+	bool ops[] = { true, false, false, false };
+	mm.setOperations(ops, 1);
+
+	EXPECT_EQ(mm.getN1() + mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, getAnswerSub) {
+	MentalMath mm = MentalMath();
+
+	bool ops[] = { false, true, false, false };
+	mm.setOperations(ops, 1);
+
+	EXPECT_EQ(mm.getN1() - mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, getAnswerMul) {
+	MentalMath mm = MentalMath();
+
+	bool ops[] = { false, false, true, false };
+	mm.setOperations(ops, 1);
+
+	EXPECT_EQ(mm.getN1() * mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, getAnswerDiv) {
+	MentalMath mm = MentalMath();
+
+	bool ops[] = { false, false, false, true };
+	mm.setOperations(ops, 1);
+
+	EXPECT_EQ(mm.getN1() / mm.getN2(), mm.getAnswer());
+}
+
+TEST(MentalMath, getOperator) {
+	MentalMath mm = MentalMath();
+
+	bool ops[] = { true, true, false, false };
+	mm.setOperations(ops, 2);
+
+	EXPECT_TRUE(mm.getOperation() == '+' || mm.getOperation() == '-');
 }
 
 TEST(MentalMath, thread) {
@@ -42,5 +88,5 @@ TEST(MentalMath, thread) {
 
 	MentalMathGame mmg = MentalMathGame();
 
-	EXPECT_FALSE(mmg.thread.isNull());
+	EXPECT_FALSE(mmg.getThread().isNull());
 }

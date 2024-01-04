@@ -37,6 +37,11 @@ MentalMathGame::~MentalMathGame()
 	qDebug() << "MentalMathGame destructor";
 }
 
+QPointer<QThread> MentalMathGame::getThread()
+{
+	return thread;
+}
+
 void MentalMathGame::start()
 {
 	// if there is a thread and is still running, stop it

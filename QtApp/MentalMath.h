@@ -10,7 +10,7 @@ private:
 	int n2;
 	Controller* control;
 	bool operations[4];
-	char operation;
+	char operation = '*';
 
 public:
 	MentalMath();

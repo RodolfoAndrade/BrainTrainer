@@ -14,6 +14,7 @@ class MentalMathGame : public QMainWindow
 public:
 	MentalMathGame(QWidget *parent = nullptr);
 	~MentalMathGame();
+	QPointer<QThread> getThread();
 
 private:
 	Ui::MentalMathGameClass ui;
