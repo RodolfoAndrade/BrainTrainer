@@ -36,6 +36,33 @@ void MentalMath::generateEquation()
 	}
 }
 
+void MentalMath::setOperations(bool operations[4], int count)
+{
+	this->operations[0] = operations[0];
+	this->operations[1] = operations[1];
+	this->operations[2] = operations[2];
+	this->operations[3] = operations[3];
+
+	// randomly choosing a operation
+	int opn = rand() % count + 1;
+	if (this->operations[0] && opn) {
+		opn--;
+		operation = '+';
+	}
+	if (this->operations[1] && opn) {
+		opn--;
+		operation = '-';
+	}
+	if (this->operations[2] && opn) {
+		opn--;
+		operation = '*';
+	}
+	if (this->operations[3] && opn) {
+		opn--;
+		operation = '/';
+	}
+}
+
 void MentalMath::setNumberDigits(std::string n1, std::string n2)
 {
 	this->digitsN1 = n1;
@@ -64,5 +91,19 @@ std::string MentalMath::getDigitsN2()
 
 int MentalMath::getAnswer()
 {
-	return n1 * n2;
+	switch (operation) {
+		case '+' :
+			return n1 + n2;
+		case '-':
+			return n1 - n2;
+		case '*':
+			return n1 * n2;
+		case '/':
+			return n1 / n2;
+	}
+}
+
+char MentalMath::getOperation()
+{
+	return operation;
 }

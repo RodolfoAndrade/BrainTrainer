@@ -1,6 +1,6 @@
 #include "MentalMathGame.h"
 
-MentalMathGame::MentalMathGame(QWidget *parent)
+MentalMathGame::MentalMathGame(QWidget* parent)
 	: QMainWindow(parent), math{ MentalMath() }
 {
 	qDebug() << "MentalMathGame constructor";
@@ -18,11 +18,16 @@ MentalMathGame::MentalMathGame(QWidget *parent)
 	// disconnecting combbox to set up value without emitting signal
 	connect(ui.n1, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
 	connect(ui.n2, SIGNAL(currentTextChanged(QString)), this, SLOT(start()));
-	connect(ui.addCheckBox, SIGNAL(stateChanged(int)), this, SLOT(start()));
-	connect(ui.subCheckBox, SIGNAL(stateChanged(int)), this, SLOT(start()));
-	connect(ui.mulCheckBox, SIGNAL(stateChanged(int)), this, SLOT(start()));
-	connect(ui.divCheckBox, SIGNAL(stateChanged(int)), this, SLOT(start()));
 	connect(ui.timeoutSpinBox, SIGNAL(valueModified()), this, SLOT(start()));
+
+	// add checkboxes to operations lists
+	operations[0] = ui.addCheckBox;
+	operations[1] = ui.subCheckBox;
+	operations[2] = ui.mulCheckBox;
+	operations[3] = ui.divCheckBox;
+	for (size_t i = 0; i < 4; i++) {
+		connect(operations[i], SIGNAL(stateChanged(int)), this, SLOT(start()));
+	}
 
 	start();
 }
@@ -34,33 +39,50 @@ MentalMathGame::~MentalMathGame()
 
 void MentalMathGame::start()
 {
+	// if there is a thread and is still running, stop it
 	if (thread) {
 		if (thread->isRunning()) {
 			thread->requestInterruption();
 			thread->quit();
 		}
 	}
-	// set number of digits
-	math.setNumberDigits(ui.n1->currentText().toStdString(), ui.n2->currentText().toStdString());
-	// create equation
-	math.generateEquation();
-	// set timeout
-	timeout = ui.timeoutSpinBox->value();
-	// update ui to display equation
-	ui.equation->setText(QString::number(math.getN1()) + "x" + QString::number(math.getN2()));
-	ui.answer->setText("");
-	ui.answer->setFocus();
-	// set up worker
-	thread = new QThread();
-	Worker* worker = new Worker(timeout);
-	worker->moveToThread(thread);
-	connect(worker, &Worker::error, this, &MentalMathGame::errorString);
-	connect(worker, &Worker::setBar, this, &MentalMathGame::setBar);
-	connect(thread, &QThread::started, worker, &Worker::process);
-	connect(worker, &Worker::finished, thread, &QThread::quit);
-	connect(worker, &Worker::finished, worker, &Worker::deleteLater);
-	connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-	thread->start();
+	// get checked operations
+	int count = 0;
+	bool options[] = {false, false, false, false};
+	for (size_t i = 0; i < 4; i++) {
+		if (operations[i]->isChecked()) {
+			options[i] = true;
+			count++;
+		}
+		else {
+			options[i] = false;
+		}
+	}
+	// if at least one operation is set
+	if (count) {
+		math.setOperations(options, count);
+		// set number of digits
+		math.setNumberDigits(ui.n1->currentText().toStdString(), ui.n2->currentText().toStdString());
+		// create equation
+		math.generateEquation();
+		// set timeout
+		timeout = ui.timeoutSpinBox->value();
+		// update ui to display equation
+		ui.equation->setText(QString::number(math.getN1()) + math.getOperation() + QString::number(math.getN2()));
+		ui.answer->setText("");
+		ui.answer->setFocus();
+		// set up worker
+		thread = new QThread();
+		Worker* worker = new Worker(timeout);
+		worker->moveToThread(thread);
+		connect(worker, &Worker::error, this, &MentalMathGame::errorString);
+		connect(worker, &Worker::setBar, this, &MentalMathGame::setBar);
+		connect(thread, &QThread::started, worker, &Worker::process);
+		connect(worker, &Worker::finished, thread, &QThread::quit);
+		connect(worker, &Worker::finished, worker, &Worker::deleteLater);
+		connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+		thread->start();
+	}
 }
 
 void MentalMathGame::errorString(QString err)

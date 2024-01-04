@@ -20,6 +20,7 @@ private:
 	MentalMath math;
 	QPointer<QThread> thread;
 	int timeout;
+	QCheckBox * operations[4];
 
 private slots:
 	void checkAnswer();
