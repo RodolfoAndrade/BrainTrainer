@@ -1,5 +1,6 @@
 #pragma once
-#include "Controller.h"
+#include <string>
+#include <time.h>
 
 class MentalMath
 {
@@ -8,7 +9,6 @@ private:
 	std::string digitsN2;
 	int n1;
 	int n2;
-	Controller* control;
 	bool operations[4];
 	char operation = '*';
 

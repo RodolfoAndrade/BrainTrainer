@@ -2,9 +2,8 @@
 
 Mnmonic::Mnmonic()
 {
-	// looking for mentalmath configuration saved in settings.json file
-	control = Controller::getInstance("settings.json");
-	digitsLength = std::stoi(control->getMnmonicSettings());
+	// looking for mentalmath configuration
+	digitsLength = 7;
 }
 
 int Mnmonic::getDigitsLength()

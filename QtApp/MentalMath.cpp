@@ -2,10 +2,9 @@
 
 MentalMath::MentalMath()
 {
-	// looking for mentalmath configuration saved in settings.json file
-	control = Controller::getInstance("settings.json");
-	digitsN1 = control->getMentalMathSettings("n1");
-	digitsN2 = control->getMentalMathSettings("n2");
+	// looking for mentalmath configuration
+	digitsN1 = 1;
+	digitsN2 = 2;
 
 	generateEquation();
 }

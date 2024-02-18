@@ -120,7 +120,7 @@ void MentalMathGame::checkAnswer() {
 		flag = ui.answer->text().toInt() == answer;
 	}
 	// set up feedback
-	ui.correctAnswer->setText("Correct answer : " + QString::number(answer));
+	ui.correctAnswer->setText("Correct answer: " + QString::number(math.getN1()) + math.getOperation() + QString::number(math.getN2()) + "=" + QString::number(answer));
 	ui.givenAnswer->setText("Given answer: " + ui.answer->text());
 	ui.feedback->setText(flag ? "Correct! Play it again!" : "Wrong! Try again!");
 	// restart

@@ -1,10 +1,10 @@
 #pragma once
-#include "Controller.h"
+#include <string>
+#include <time.h>
 
 class Mnmonic
 {
 private:
-	Controller* control;
 	int digitsLength;
 	std::string digits;
 public:

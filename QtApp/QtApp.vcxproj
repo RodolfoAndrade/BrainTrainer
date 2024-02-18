@@ -88,7 +88,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="MentalMath.cpp" />
     <ClCompile Include="Mnmonic.cpp" />
     <ClCompile Include="SudokuGame.cpp" />
@@ -115,7 +114,6 @@
     <QtMoc Include="SudokuGame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controller.h" />
     <ClInclude Include="MentalMath.h" />
     <ClInclude Include="Mnmonic.h" />
   </ItemGroup>
